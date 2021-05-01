@@ -1,0 +1,58 @@
+//Criando Figuras.
+
+--As Figuras no projeto até agora são: Retângulo, Elípse, Triangulo e Pentaguno.
+
+Aperte a letra "r" para fazer um Retângulo aparecer na posição do mouse.
+
+Aperte a letra "e" para fazer um Elípse aparecer na posição do mouse.
+
+Aperte a letra "t" para fazer um Triangulo aparecer na posição do mouse.
+
+Aperte a letra "p" para fazer um Pentaguno aparecer na posição do mouse.
+
+
+//Movendo Figuras
+
+Clique e arraste numa figura para move-las de lugar.
+(NOTE: Por algum motivo, só se consegue mover o Triangulo clicando e arrastando na linha de baixo.
+Similarmente o Pentaguno só se move clicando e arrastando a linha da esquerda de baixo.)
+
+//Alterando a Cor
+
+--As cores de fundo podem ser alteradas para: Vermelho, Azul, Verde, Liláz e Amarelo.
+
+Primeiro selecione a figura que quer, e aperte:
+
+A número "1" para alterar a cor para Vermelho.
+
+A número "2" para alterar a cor para Azul.
+
+A número "3" para alterar a cor para Verde.
+
+A número "4" para alterar a cor para Liláz.
+
+A número "5" para alterar a cor para Amarelo.
+
+
+
+
+
+--As cores de borda podem ser alteradas para: Vermelho, Azul e Verde.
+
+Primeiro selecione a figura que quer, e aperte:
+
+A número "q" para alterar a cor para Vermelho.
+
+A número "w" para alterar a cor para Azul.
+
+A número "a" para alterar a cor para Verde.
+
+//Alterando o Tamanho
+
+Para aumentar e diminuir de tamanho, selecione a figura e 
+aperte as teclas "+" e "-" respectivamente.
+
+//Remover uma Figura
+
+Para remover uma figura selecione a figura que quer e aperte o número "0".
+

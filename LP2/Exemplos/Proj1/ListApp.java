@@ -39,7 +39,8 @@ class ListFrame extends JFrame {
             }
         );
         */
-
+        
+        
         this.addMouseListener(new MouseAdapter(){
 			
 			public void mousePressed(MouseEvent evt){
@@ -47,6 +48,7 @@ class ListFrame extends JFrame {
 				for(Figure fig: figs){
 					if((fig.x <= evt.getX() && fig.x + fig.width >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.height >= evt.getY())){
 						focus = fig;
+                        foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));
 						figs.remove(focus);
 						figs.add(focus);
 					}else{
@@ -57,6 +59,7 @@ class ListFrame extends JFrame {
 				}
 			}
 		});
+        
 
         this.addMouseMotionListener(new MouseMotionAdapter(){
 			public void mouseDragged(MouseEvent event){
@@ -235,8 +238,13 @@ class ListFrame extends JFrame {
         );
 
         this.setTitle("Lista de Figuras");
-        this.setSize(500, 500);
-        this.setLocationRelativeTo(null);
+        //this.setSize(500, 500);
+        //this.setLocationRelativeTo(null);
+
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setUndecorated(false);
+		this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void paint (Graphics g) {
@@ -244,5 +252,6 @@ class ListFrame extends JFrame {
         for (Figure fig: this.figs) {
             fig.paint(g);
         }
+        this.foco.paint(g);
     }
 }
