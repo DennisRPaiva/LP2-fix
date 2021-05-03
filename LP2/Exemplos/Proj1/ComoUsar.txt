@@ -50,7 +50,7 @@ A número "a" para alterar a cor para Verde.
 //Alterando o Tamanho
 
 Para aumentar e diminuir de tamanho, selecione a figura e 
-aperte as teclas "+" e "-" respectivamente.
+aperte as teclas Shift + "+" e "-" respectivamente.
 
 //Remover uma Figura
 

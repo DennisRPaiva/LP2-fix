@@ -20,7 +20,8 @@ class ListFrame extends JFrame {
     Rect foco = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
 
     Random rand = new Random();
-    Figure focus = null;
+    //Figure focus = null;
+    Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
     //Point2D start;
 
     ListFrame () {
@@ -30,33 +31,27 @@ class ListFrame extends JFrame {
                 }
             }
         );
-        /*
-        this.addMouseListener( new MouseAdapter() {
-
-                public void mouseClicked(MouseEvent mouseLocation){   
-                    start = new Point2D.Double(mouseLocation.getX(), mouseLocation.getY());
-                }   
-            }
-        );
-        */
         
         
         this.addMouseListener(new MouseAdapter(){
 			
 			public void mousePressed(MouseEvent evt){
-				focus = null;
+				//focus = null;
 				for(Figure fig: figs){
 					if((fig.x <= evt.getX() && fig.x + fig.width >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.height >= evt.getY())){
 						focus = fig;
-                        foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));
-						figs.remove(focus);
-						figs.add(focus);
+                        foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));	
 					}else{
 						foco.corBorda(new Color(0,0,0,0));
-						focus = null;
+						//focus = null;
 					}
-					repaint();
+					
 				}
+				foco.corBorda(Color.green);
+
+                figs.remove(focus);
+				figs.add(focus);
+                repaint();
 			}
 		});
         
