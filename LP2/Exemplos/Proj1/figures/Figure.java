@@ -2,6 +2,7 @@ package figures;
 
 import java.awt.*;
 
+
 public abstract class Figure {
     public int x, y;
     public int width, height;
