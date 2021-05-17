@@ -33,43 +33,7 @@ class ListFrame extends JFrame {
         );
         
         
-        this.addMouseListener(new MouseAdapter(){
-			
-			public void mousePressed(MouseEvent evt){
-				//focus = null;
-				for(Figure fig: figs){
-					if((fig.x <= evt.getX() && fig.x + fig.width >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.height >= evt.getY())){
-						focus = fig;
-                        foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));	
-					}else{
-						foco.corBorda(new Color(0,0,0,0));
-						//focus = null;
-					}
-					
-				}
-				foco.corBorda(Color.green);
-
-                figs.remove(focus);
-				figs.add(focus);
-                repaint();
-			}
-		});
         
-
-        this.addMouseMotionListener(new MouseMotionAdapter(){
-			public void mouseDragged(MouseEvent event){
-				for(Figure fig: figs){
-					if(focus == fig){
-						focus.x = event.getX()-focus.width/2;
-						focus.y = event.getY()-focus.height/2;
-						foco.x = focus.x-1;
-						foco.y = focus.y-1;
-						repaint();
-					}
-				}
-			}
-		});
-
         this.addKeyListener (
             new KeyAdapter() {
                 public void keyPressed (KeyEvent evt) {
@@ -231,6 +195,67 @@ class ListFrame extends JFrame {
                 }
             }
         );
+
+        this.addMouseListener(new MouseAdapter(){
+			
+			//public void mousePressed(MouseEvent evt){
+				//focus = null;
+			//	for(Figure fig: figs){
+			//		if((fig.x <= evt.getX() && fig.x + fig.width >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.height >= evt.getY())){
+			//			focus = fig;
+            //            foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));	
+			//		}else{
+			//			foco.corBorda(new Color(0,0,0,0));
+						//focus = null;
+			//		}
+					
+			//	}
+			//	foco.corBorda(Color.green);
+
+           //     figs.remove(focus);
+			//	figs.add(focus);
+            //    repaint();
+			//}
+
+            public void mousePressed (MouseEvent evt) {
+				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
+				foco.corBorda(new Color(0,0,0,0));
+                
+				focus = aux;
+                int x = evt.getX();
+                int y = evt.getY();
+
+                for (Figure fig: figs) {
+
+                    if (fig.clicked(x,y)) {
+                        focus = fig;
+
+                        foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
+                        foco.corBorda(Color.red);
+						
+					}
+				}
+				figs.remove(focus);
+				figs.add(focus);
+				repaint();
+            }
+		});
+        
+
+        this.addMouseMotionListener(new MouseMotionAdapter(){
+			public void mouseDragged(MouseEvent event){
+				for(Figure fig: figs){
+					if(focus == fig){
+						focus.x = event.getX()-focus.width/2;
+						focus.y = event.getY()-focus.height/2;
+						foco.x = focus.x-1;
+						foco.y = focus.y-1;
+						repaint();
+					}
+				}
+			}
+		});
+
 
         this.setTitle("Lista de Figuras");
         //this.setSize(500, 500);
