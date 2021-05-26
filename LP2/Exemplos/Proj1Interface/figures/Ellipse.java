@@ -16,6 +16,13 @@ public class Ellipse extends Figure {
             this.width, this.height, this.x, this.y);
     }
 
+    public void set(int x, int y, int w, int h){
+		this.x = x;
+		this.y = y;
+		this.width = w;
+		this.height = h;
+	}
+
     public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         //g2d.draw(new Ellipse2D.Double(this.x,this.y, this.width, height)); --- esta bugando na hora de pintar!!! n sei pq, mudei a logica.

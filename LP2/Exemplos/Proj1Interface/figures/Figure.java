@@ -52,7 +52,7 @@ public abstract class Figure implements IVisible{
 		this.height += tamHeight;
 	}
 
-    //public abstract void paint (Graphics g);
+    public abstract void set (int x, int y, int width, int height);
 
     public boolean clicked (int x, int y) {
         return (this.x<=x && x<=this.x+this.width && this.y<=y && y<=this.y+this.height);

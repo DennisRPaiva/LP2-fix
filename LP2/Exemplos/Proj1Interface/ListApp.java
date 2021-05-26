@@ -17,13 +17,15 @@ class ListApp {
 
 class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
+    ArrayList<Button> butao = new ArrayList<Button>();
+
     Rect foco = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
-
     Random rand = new Random();
-    //Figure focus = null;
-    Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
-    //Point2D start;
 
+    Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0));
+    Button focus_butao = new Button(-1,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0)));
+
+    //Point2D start;
     ListFrame () {
         this.addWindowListener ( new WindowAdapter() {
                 public void windowClosing (WindowEvent e) {
@@ -31,7 +33,13 @@ class ListFrame extends JFrame {
                 }
             }
         );
-        
+
+        butao.add(new Button(0,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
+		butao.add(new Button(1,new Ellipse(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
+		//butao.add(new Button(2,new Triangulo(0,0,0,0,Color.black,new Color(0,0,0))));
+        butao.add(new Button(2,new Rect(0,0,0,0,Color.black,new Color(0,0,0))));
+		//butao.add(new Button(3,new Pentaguno(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0))));
+        butao.add(new Button(3,new Ellipse(0,0,0,0,Color.black,new Color(0,0,0))));
         
         
         this.addKeyListener (
@@ -197,26 +205,6 @@ class ListFrame extends JFrame {
         );
 
         this.addMouseListener(new MouseAdapter(){
-			
-			//public void mousePressed(MouseEvent evt){
-				//focus = null;
-			//	for(Figure fig: figs){
-			//		if((fig.x <= evt.getX() && fig.x + fig.width >= evt.getX()) && (fig.y <= evt.getY() && fig.y + fig.height >= evt.getY())){
-			//			focus = fig;
-            //            foco = new Rect(focus.x-1,focus.y-1,focus.width+2,fig.height+2,Color.green,new Color(0,0,0,0));	
-			//		}else{
-			//			foco.corBorda(new Color(0,0,0,0));
-						//focus = null;
-			//		}
-					
-			//	}
-			//	foco.corBorda(Color.green);
-
-           //     figs.remove(focus);
-			//	figs.add(focus);
-            //    repaint();
-			//}
-
             public void mousePressed (MouseEvent evt) {
 				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
 				foco.corBorda(new Color(0,0,0,0));
@@ -225,21 +213,48 @@ class ListFrame extends JFrame {
                 int x = evt.getX();
                 int y = evt.getY();
 
+                if (focus_butao.selecionado != -1){
+                    int width = 50;
+					int height = 50;
+                    if(focus_butao.selecionado == 0){
+                        figs.add(new Rect(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                    }else if(focus_butao.selecionado == 1){
+                        figs.add(new Ellipse(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                    }else if(focus_butao.selecionado == 2){
+                        figs.add(new Triangulo(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                    }else if(focus_butao.selecionado == 3){
+                        figs.add(new Pentaguno(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                    }
+                }
                 for (Figure fig: figs) {
-
                     if (fig.clicked(x,y)) {
                         focus = fig;
-
                         foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
-                        foco.corBorda(Color.red);
-						
+                        foco.corBorda(Color.red);						
 					}
 				}
 				figs.remove(focus);
 				figs.add(focus);
 				repaint();
             }
+
+            public void mouseClicked(MouseEvent evt){
+                int x = evt.getX();
+                int y = evt.getY();
+                Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black));
+                focus_butao = aux_button;
+                for(Button but: butao){
+                    if(but.clicked(x, y)){
+                        focus_butao = but;
+                        but.set(Color.gray);
+                    }else {
+                        but.set(Color.lightGray);
+                    }
+                }
+                repaint();
+            }
 		});
+  
         
 
         this.addMouseMotionListener(new MouseMotionAdapter(){
@@ -256,7 +271,6 @@ class ListFrame extends JFrame {
 			}
 		});
 
-
         this.setTitle("Lista de Figuras");
         //this.setSize(500, 500);
         //this.setLocationRelativeTo(null);
@@ -269,6 +283,9 @@ class ListFrame extends JFrame {
 
     public void paint (Graphics g) {
         super.paint(g);
+        for (Button but: this.butao) {
+            but.paint(g);
+        }
         for (Figure fig: this.figs) {
             fig.paint(g);
         }
