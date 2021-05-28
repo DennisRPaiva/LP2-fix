@@ -36,10 +36,10 @@ class ListFrame extends JFrame {
 
         butao.add(new Button(0,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
 		butao.add(new Button(1,new Ellipse(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
-		//butao.add(new Button(2,new Triangulo(0,0,0,0,Color.black,new Color(0,0,0))));
-        butao.add(new Button(2,new Rect(0,0,0,0,Color.black,new Color(0,0,0))));
-		//butao.add(new Button(3,new Pentaguno(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0))));
-        butao.add(new Button(3,new Ellipse(0,0,0,0,Color.black,new Color(0,0,0))));
+		butao.add(new Button(2,new Triangulo(0,0,0,0,Color.black,new Color(0,0,0))));
+        //butao.add(new Button(2,new Rect(0,0,0,0,Color.black,new Color(0,0,0))));
+		butao.add(new Button(3,new Pentaguno(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0))));
+        //butao.add(new Button(3,new Ellipse(0,0,0,0,Color.black,new Color(0,0,0))));
         
         
         this.addKeyListener (

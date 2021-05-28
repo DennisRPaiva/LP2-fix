@@ -55,7 +55,7 @@ public class Button implements IVisible{
 			g2d.setColor(corFundo);
 			g2d.fillRect(x+1,aux+1,width-1,width-1);
 
-			this.fig.set(x+7,aux+7,width-10,height-10);
+			this.fig.set(x+7,aux+35,width-10,height-10);
 
 		}else if(selecionado==3){
 			aux+=120;
@@ -63,7 +63,7 @@ public class Button implements IVisible{
 			g2d.setColor(corFundo);
 			g2d.fillRect(x+1,aux+1,width-1,width-1);
 
-			this.fig.set(x+7,aux+7,width-10,height-10);
+			this.fig.set(x+7,aux+20,width-10,height-10);
 		}
 
 		this.fig.paint(g);
