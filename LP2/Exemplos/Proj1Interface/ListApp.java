@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
+import java.io.*;
 
 import figures.*;
 
@@ -27,11 +28,35 @@ class ListFrame extends JFrame {
 
     //Point2D start;
     ListFrame () {
+
+        try{
+			FileInputStream f = new FileInputStream("proj.bin");
+			ObjectInputStream o = new ObjectInputStream(f);
+			this.figs = (ArrayList<Figure>) o.readObject();
+			o.close();
+		}catch(Exception x){
+			System.out.println("ERRO!\n");
+		}
+
         this.addWindowListener ( new WindowAdapter() {
+            //    public void windowClosing (WindowEvent e) {
+            //        System.exit(0);
+            //    }
+
                 public void windowClosing (WindowEvent e) {
+                    try{
+                        FileOutputStream f = new FileOutputStream("proj.bin");
+                        ObjectOutputStream o = new ObjectOutputStream(f);
+                        o.writeObject(figs);
+                        o.flush();
+                        o.close();
+                    }catch(Exception x){
+                        System.out.println("ERRO!\n");
+                    }
                     System.exit(0);
                 }
             }
+            
         );
 
         butao.add(new Button(0,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
