@@ -311,11 +311,11 @@ class ListFrame extends JFrame {
 
     public void paint (Graphics g) {
         super.paint(g);
-        for (Button but: this.butao) {
-            but.paint(g);
-        }
         for (Figure fig: this.figs) {
             fig.paint(g);
+        }
+        for (Button but: this.butao) {
+            but.paint(g);
         }
         this.foco.paint(g);
     }
