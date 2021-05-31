@@ -216,15 +216,18 @@ class ListFrame extends JFrame {
 
                     //remove
                     else if(evt.getKeyCode() == '0'){
+                        Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
                         for(Figure fig: figs){
 							if(focus == fig){
-								figs.remove(fig);
+								aux = fig;
 								foco.corFundo(new Color(0,0,0,0));
-								repaint();
+								//repaint();
 							}
 						}
+                        figs.remove(focus);
+				        repaint();
                     }
-                    repaint();
+                    //repaint();
                 }
             }
         );
