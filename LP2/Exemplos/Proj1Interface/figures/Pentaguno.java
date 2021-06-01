@@ -24,9 +24,9 @@ public class Pentaguno extends Figure {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(borda);
         g2d.drawPolygon(new int[]{this.x,(this.x+width/4),(this.x+width*3/4),(this.x + width),(this.x + width/2)} 
-        ,new int[]{this.y,(this.y+width/2),(this.y+width/2),this.y,(this.y-width/2)}, 5);
+        ,new int[]{(this.y+height/2),(this.y+height),(this.y+height),(this.y+height/2),this.y}, 5);
         g2d.setColor(fundo);
         g2d.fillPolygon(new int[]{this.x,(this.x+width/4),(this.x + width*3/4),(this.x + width),(this.x + width/2)} 
-        ,new int[]{this.y,(this.y+width/2),(this.y+width/2),this.y,(this.y-width/2)}, 5);
+        ,new int[]{(this.y+height/2),(this.y+height),(this.y+height),(this.y+height/2),this.y}, 5);
     }
 }

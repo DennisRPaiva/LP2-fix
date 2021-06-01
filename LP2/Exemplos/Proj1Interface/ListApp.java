@@ -211,15 +211,13 @@ class ListFrame extends JFrame {
                         //diminui a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-								fig.reSize(-1,-1);
-								foco.reSize(-1,-1);
-								repaint();
-                                // if(focus.width == 20){
-                                //     System.out.println("entrei");
-                                //     fig.reSize(0,0);
-								//     foco.reSize(0,0);
-								//     repaint();
-                                // }
+                                if(focus.width < 15){
+								    repaint();
+                                }else {
+                                    fig.reSize(-1,-1);
+                                    foco.reSize(-1,-1);
+                                    repaint();
+                                }
 							}
 						}
                     }
@@ -252,6 +250,7 @@ class ListFrame extends JFrame {
 				focus = aux;
                 int x = evt.getX();
                 int y = evt.getY();
+                boolean buton_front;
 
                 if (focus_butao.selecionado != -1){
                     int width = 50;
@@ -266,26 +265,24 @@ class ListFrame extends JFrame {
                         figs.add(new Pentaguno(x,y, width,height,Color.black,new Color(0,0,0,0),'p'));
                     }
                 }
-                for (Figure fig: figs) {
-                    if (fig.clicked(x,y)) {
-                        focus = fig;
-                        if (focus.c == 't'){
-							foco.set(focus.x-1,focus.y-52,focus.width+2,focus.height+5);
-							foco.corBorda(Color.red);
-						}else if(focus.c == 'p'){
-							foco.set(focus.x-1,focus.y-30,focus.width+2,focus.height+2);
-							foco.corBorda(Color.red);
-						}else{
-							foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
-							foco.corBorda(Color.red);
-						}
-                        //foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
-                        //foco.corBorda(Color.red);						
-					}
-				}
-				figs.remove(focus);
-				figs.add(focus);
-				repaint();
+                buton_front = false;
+                for(Button but: butao){
+                    if(but.clicked(x, y)){
+                        buton_front = true;
+                    }
+                }
+                if(buton_front == false){
+                    for (Figure fig: figs) {
+                        if (fig.clicked(x,y)) {
+                            focus = fig;
+                            foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
+                            foco.corBorda(Color.red);						
+                        }
+                    }
+                    figs.remove(focus);
+				    figs.add(focus);
+				    repaint();
+                }	
             }
 
             public void mouseClicked(MouseEvent evt){
@@ -314,14 +311,14 @@ class ListFrame extends JFrame {
 						focus.x = event.getX()-focus.width/2;
 						focus.y = event.getY()-focus.height/2;
 						foco.x = focus.x-1;
-                        if (fig.c == 't'){
-							foco.y = focus.y-50;
-						}else if(fig.c == 'p'){
-							foco.y = focus.y-25;
-						}else{
-							foco.y = focus.y-1;
-						}
-						//foco.y = focus.y-1;
+                        // if (fig.c == 't'){
+						// 	foco.y = focus.y-55;
+						// }else if(fig.c == 'p'){
+						// 	foco.y = focus.y-25;
+						// }else{
+						// 	foco.y = focus.y-1;
+						// }
+						foco.y = focus.y-1;
 						repaint();
 					}
 				}

@@ -24,8 +24,8 @@ public class Triangulo extends Figure {
     public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(borda);
-        g2d.drawPolygon(new int[]{this.x,(this.x+width/2),(this.x + width)},new int[]{this.y,(this.y-height),this.y}, 3);
+        g2d.drawPolygon(new int[]{this.x,(this.x+width/2),(this.x + width)},new int[]{(this.y+height),this.y,(this.y+height)}, 3);
         g2d.setColor(fundo);
-        g2d.fillPolygon(new int[]{this.x,(this.x+width/2),(this.x + width)},new int[]{this.y,(this.y-height),this.y}, 3);
+        g2d.fillPolygon(new int[]{this.x,(this.x+width/2),(this.x + width)},new int[]{(this.y+height),this.y,(this.y+height)}, 3);
     }
 }
