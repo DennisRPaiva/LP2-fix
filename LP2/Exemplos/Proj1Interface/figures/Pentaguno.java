@@ -5,8 +5,8 @@ import java.awt.*;
 public class Pentaguno extends Figure {
     
 
-    public Pentaguno (int x, int y, int w, int h, Color fundo, Color borda) {
-        super(x, y, w, h, fundo, borda);
+    public Pentaguno (int x, int y, int w, int h, Color fundo, Color borda, char c) {
+        super(x, y, w, h, fundo, borda,c);
     }
     public void print () {
         System.out.format("Pentaguno: w/h (%d,%d) e x/y (%d,%d).\n",

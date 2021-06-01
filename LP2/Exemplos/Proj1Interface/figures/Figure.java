@@ -9,14 +9,16 @@ public abstract class Figure implements IVisible, Serializable{
     public int width, height;
 
     public Color fundo, borda;
+    public char c;
 
-    public Figure (int x, int y, int w, int h, Color borda, Color fundo) {
+    public Figure (int x, int y, int w, int h, Color borda, Color fundo, char c) {
         this.x = x;
         this.y = y;
         this.width = w;
         this.height = h;
         this.fundo = fundo;
         this.borda = borda;
+        this.c = c;
     }
 
     public int getX(){

@@ -5,8 +5,8 @@ import java.awt.*;
 public class Rect extends Figure {
     
 
-    public Rect (int x, int y, int w, int h, Color fundo, Color borda) {
-        super(x, y, w, h, fundo, borda);
+    public Rect (int x, int y, int w, int h, Color fundo, Color borda, char c) {
+        super(x, y, w, h, fundo, borda,c);
     }
 
     public void print () {

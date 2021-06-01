@@ -20,11 +20,11 @@ class ListFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
     ArrayList<Button> butao = new ArrayList<Button>();
 
-    Rect foco = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
+    Rect foco = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0), 'r');
     Random rand = new Random();
 
-    Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0));
-    Button focus_butao = new Button(-1,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0)));
+    Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0), 'e');
+    Button focus_butao = new Button(-1,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0),'e'));
 
     //Point2D start;
     ListFrame () {
@@ -35,7 +35,7 @@ class ListFrame extends JFrame {
 			this.figs = (ArrayList<Figure>) o.readObject();
 			o.close();
 		}catch(Exception x){
-			System.out.println("ERRO!\n");
+			System.out.println("ERRO!1\n");
 		}
 
         this.addWindowListener ( new WindowAdapter() {
@@ -51,7 +51,7 @@ class ListFrame extends JFrame {
                         o.flush();
                         o.close();
                     }catch(Exception x){
-                        System.out.println("ERRO!\n");
+                        System.out.println("ERRO2!\n");
                     }
                     System.exit(0);
                 }
@@ -59,11 +59,11 @@ class ListFrame extends JFrame {
             
         );
 
-        butao.add(new Button(0,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
-		butao.add(new Button(1,new Ellipse(0,0,0,0,new Color(0,0,0),new Color(0,0,0))));
-		butao.add(new Button(2,new Triangulo(0,0,0,0,Color.black,new Color(0,0,0))));
+        butao.add(new Button(0,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0),'r')));
+		butao.add(new Button(1,new Ellipse(0,0,0,0,new Color(0,0,0),new Color(0,0,0),'e')));
+		butao.add(new Button(2,new Triangulo(0,0,0,0,Color.black,new Color(0,0,0),'t')));
         //butao.add(new Button(2,new Rect(0,0,0,0,Color.black,new Color(0,0,0))));
-		butao.add(new Button(3,new Pentaguno(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0))));
+		butao.add(new Button(3,new Pentaguno(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0),'p')));
         //butao.add(new Button(3,new Ellipse(0,0,0,0,Color.black,new Color(0,0,0))));
         
         
@@ -79,7 +79,7 @@ class ListFrame extends JFrame {
                         //Rect r = new Rect(x,y, w,h);
                         //int posx = (int) start.getX();
                         //int posy = (int) start.getY();
-                        Rect r = new Rect(x, y, width, height, Color.black,new Color(0,0,0,0));
+                        Rect r = new Rect(x, y, width, height, Color.black,new Color(0,0,0,0),'r');
                         figs.add(r);
                         repaint();
                     }
@@ -167,7 +167,7 @@ class ListFrame extends JFrame {
                         //Ellipse e = new Ellipse(posx,posy, 35,35);
                         //int posx = (int) start.getX();
                         //int posy = (int) start.getY();
-                        Ellipse e = new Ellipse(x, y, width, height, Color.black,new Color(0,0,0,0));
+                        Ellipse e = new Ellipse(x, y, width, height, Color.black,new Color(0,0,0,0),'e');
                         figs.add(e);
                     }
                     
@@ -177,7 +177,7 @@ class ListFrame extends JFrame {
                         //int posy = (int) start.getY();
                         
                         // por algum motivo só tem "hitbox" na primeira linha feita (a de baixo)
-                        Triangulo t = new Triangulo(x, y, width, height, Color.black,new Color(0,0,0,0));
+                        Triangulo t = new Triangulo(x, y, width, height, Color.black,new Color(0,0,0,0),'t');
                         figs.add(t);
                     }
                     
@@ -187,7 +187,7 @@ class ListFrame extends JFrame {
                         //Pentaguno p = new Pentaguno(posx,posy, 30, 30);
 
                         // por algum motivo só tem "hitbox" na primeira linha feita (esquerda para baixo)
-                        Pentaguno p = new Pentaguno(x, y, width, height, Color.black,new Color(0,0,0,0));
+                        Pentaguno p = new Pentaguno(x, y, width, height, Color.black,new Color(0,0,0,0),'p');
                         figs.add(p);
                     }
 
@@ -196,6 +196,11 @@ class ListFrame extends JFrame {
 						for(Figure fig: figs){
 							if(focus == fig){
 								fig.reSize(1,1);
+                                // if(fig.c == 't'){
+                                //     foco.reSize(2,2);
+                                // }else{
+                                //     foco.reSize(1,1);
+                                // }
 								foco.reSize(1,1);
 								repaint();
 							}
@@ -209,6 +214,12 @@ class ListFrame extends JFrame {
 								fig.reSize(-1,-1);
 								foco.reSize(-1,-1);
 								repaint();
+                                // if(focus.width == 20){
+                                //     System.out.println("entrei");
+                                //     fig.reSize(0,0);
+								//     foco.reSize(0,0);
+								//     repaint();
+                                // }
 							}
 						}
                     }
@@ -216,12 +227,13 @@ class ListFrame extends JFrame {
 
                     //remove
                     else if(evt.getKeyCode() == '0'){
-                        Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
+                        //Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
                         for(Figure fig: figs){
 							if(focus == fig){
-								aux = fig;
+								//aux = fig;
 								foco.corFundo(new Color(0,0,0,0));
-								//repaint();
+                                foco.corBorda(new Color(0,0,0,0));
+								repaint();
 							}
 						}
                         figs.remove(focus);
@@ -234,7 +246,7 @@ class ListFrame extends JFrame {
 
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed (MouseEvent evt) {
-				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0));
+				Figure aux = new Ellipse(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0,0),'e');
 				foco.corBorda(new Color(0,0,0,0));
                 
 				focus = aux;
@@ -245,20 +257,30 @@ class ListFrame extends JFrame {
                     int width = 50;
 					int height = 50;
                     if(focus_butao.selecionado == 0){
-                        figs.add(new Rect(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                        figs.add(new Rect(x,y, width,height,Color.black,new Color(0,0,0,0),'r'));
                     }else if(focus_butao.selecionado == 1){
-                        figs.add(new Ellipse(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                        figs.add(new Ellipse(x,y, width,height,Color.black,new Color(0,0,0,0),'e'));
                     }else if(focus_butao.selecionado == 2){
-                        figs.add(new Triangulo(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                        figs.add(new Triangulo(x,y, width,height,Color.black,new Color(0,0,0,0),'t'));
                     }else if(focus_butao.selecionado == 3){
-                        figs.add(new Pentaguno(x,y, width,height,Color.black,new Color(0,0,0,0)));
+                        figs.add(new Pentaguno(x,y, width,height,Color.black,new Color(0,0,0,0),'p'));
                     }
                 }
                 for (Figure fig: figs) {
                     if (fig.clicked(x,y)) {
                         focus = fig;
-                        foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
-                        foco.corBorda(Color.red);						
+                        if (focus.c == 't'){
+							foco.set(focus.x-1,focus.y-52,focus.width+2,focus.height+5);
+							foco.corBorda(Color.red);
+						}else if(focus.c == 'p'){
+							foco.set(focus.x-1,focus.y-30,focus.width+2,focus.height+2);
+							foco.corBorda(Color.red);
+						}else{
+							foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
+							foco.corBorda(Color.red);
+						}
+                        //foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
+                        //foco.corBorda(Color.red);						
 					}
 				}
 				figs.remove(focus);
@@ -269,7 +291,7 @@ class ListFrame extends JFrame {
             public void mouseClicked(MouseEvent evt){
                 int x = evt.getX();
                 int y = evt.getY();
-                Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black));
+                Button aux_button = new Button(-1,new Ellipse(0,0,0,0,Color.black,Color.black,'e'));
                 focus_butao = aux_button;
                 for(Button but: butao){
                     if(but.clicked(x, y)){
@@ -292,7 +314,14 @@ class ListFrame extends JFrame {
 						focus.x = event.getX()-focus.width/2;
 						focus.y = event.getY()-focus.height/2;
 						foco.x = focus.x-1;
-						foco.y = focus.y-1;
+                        if (fig.c == 't'){
+							foco.y = focus.y-50;
+						}else if(fig.c == 'p'){
+							foco.y = focus.y-25;
+						}else{
+							foco.y = focus.y-1;
+						}
+						//foco.y = focus.y-1;
 						repaint();
 					}
 				}
