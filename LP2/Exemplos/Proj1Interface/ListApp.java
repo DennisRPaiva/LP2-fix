@@ -26,6 +26,9 @@ class ListFrame extends JFrame {
     Figure focus = new Rect(0,0,0,0,new Color(0,0,0,0),new Color(0,0,0), 'e');
     Button focus_butao = new Button(-1,new Rect(0,0,0,0,new Color(0,0,0),new Color(0,0,0),'e'));
 
+
+    int delta_x, delta_y;
+
     //Point2D start;
     ListFrame () {
 
@@ -211,7 +214,7 @@ class ListFrame extends JFrame {
                         //diminui a figura
 						for(Figure fig: figs){
 							if(focus == fig){
-                                if(focus.width < 15){
+                                if(focus.getW() < 15){
 								    repaint();
                                 }else {
                                     fig.reSize(-1,-1);
@@ -252,16 +255,16 @@ class ListFrame extends JFrame {
                 int y = evt.getY();
                 boolean buton_front;
 
-                if (focus_butao.selecionado != -1){
+                if (focus_butao.getSelecionado() != -1){
                     int width = 50;
 					int height = 50;
-                    if(focus_butao.selecionado == 0){
+                    if(focus_butao.getSelecionado() == 0){
                         figs.add(new Rect(x,y, width,height,Color.black,new Color(0,0,0,0),'r'));
-                    }else if(focus_butao.selecionado == 1){
+                    }else if(focus_butao.getSelecionado() == 1){
                         figs.add(new Ellipse(x,y, width,height,Color.black,new Color(0,0,0,0),'e'));
-                    }else if(focus_butao.selecionado == 2){
+                    }else if(focus_butao.getSelecionado() == 2){
                         figs.add(new Triangulo(x,y, width,height,Color.black,new Color(0,0,0,0),'t'));
-                    }else if(focus_butao.selecionado == 3){
+                    }else if(focus_butao.getSelecionado() == 3){
                         figs.add(new Pentaguno(x,y, width,height,Color.black,new Color(0,0,0,0),'p'));
                     }
                 }
@@ -274,8 +277,10 @@ class ListFrame extends JFrame {
                 if(buton_front == false){
                     for (Figure fig: figs) {
                         if (fig.clicked(x,y)) {
+                            delta_x = x - fig.getX(); //fig.getX()
+                            delta_y = y - fig.getY();
                             focus = fig;
-                            foco.set(focus.x-1,focus.y-1,focus.width+2,focus.height+2);
+                            foco.set(focus.getX()-1,focus.getY()-1,focus.getW()+2,focus.getH()+2); //focus.getX()
                             foco.corBorda(Color.red);						
                         }
                     }
@@ -308,17 +313,10 @@ class ListFrame extends JFrame {
 			public void mouseDragged(MouseEvent event){
 				for(Figure fig: figs){
 					if(focus == fig){
-						focus.x = event.getX()-focus.width/2;
-						focus.y = event.getY()-focus.height/2;
-						foco.x = focus.x-1;
-                        // if (fig.c == 't'){
-						// 	foco.y = focus.y-55;
-						// }else if(fig.c == 'p'){
-						// 	foco.y = focus.y-25;
-						// }else{
-						// 	foco.y = focus.y-1;
-						// }
-						foco.y = focus.y-1;
+						focus.setX(event.getX()-delta_x);
+						focus.setY(event.getY()-delta_y);
+						foco.setX(focus.getX()-1);
+						foco.setY(focus.getY()-1);
 						repaint();
 					}
 				}

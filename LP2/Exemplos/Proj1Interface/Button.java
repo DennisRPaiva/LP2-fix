@@ -4,8 +4,9 @@ import ivisible.IVisible;
 import figures.Figure;
 
 public class Button implements IVisible{
-	public int selecionado; 
-    public int x,y,width,height;
+	private int selecionado;  // era publico foi decidido mudar para privado uma vez que apenas isso é utilizado na aplicação final, entao não precisa da visibilidade das outras classes
+    private int x,y,width,height;
+
 	private Color corFundo = new Color(96,96,96);
 	private Figure fig;
 	private int aux;
@@ -18,6 +19,10 @@ public class Button implements IVisible{
 		this.width=40;
 		this.height=40;
 	}
+
+	public int getSelecionado(){
+        return this.selecionado;
+    }
 	
 	public boolean clicked(int x, int y){
         return (this.x<=x && 

@@ -5,11 +5,11 @@ import ivisible.IVisible;
 import java.io.Serializable;
 
 public abstract class Figure implements IVisible, Serializable{
-    public int x, y;
-    public int width, height;
+    protected int x, y; // era publico, foi mudado para protected pois ele deve dar visibilidade a suas classes filhas, mas não à implementação toda.
+    protected int width, height;
 
-    public Color fundo, borda;
-    public char c;
+    protected Color fundo, borda;
+    protected char c;
 
     public Figure (int x, int y, int w, int h, Color borda, Color fundo, char c) {
         this.x = x;
@@ -29,12 +29,44 @@ public abstract class Figure implements IVisible, Serializable{
         return this.y;
     }
 
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
+    }
+
     public int getW(){
         return this.width;
     }
 
     public int getH(){
         return this.height;
+    }
+
+    public void setW(int w){
+        this.width = width;
+    }
+
+    public void setH(int h){
+        this.height = height;
+    }
+
+    public Color getBorda(){
+        return this.borda;
+    }
+
+    public Color getFundo(){
+        return this.fundo;
+    }
+
+    public void setBorda(){
+        this.borda = borda;
+    }
+
+    public void setFundo(){
+        this.fundo = fundo;
     }
 
     public void corFundo(Color fundo){
