@@ -1,0 +1,13 @@
+Vantagem: 
+Getters e setters podem permitir diferentes níveis de acesso, por exemplo, get pode ser público, mas o conjunto pode ser protegido.
+Isso abre a possibilidade para qualquer classe conseguir acessar o conteúdo de uma variável, mas nem toda, pode altera-lo.
+Fazendo com que a integridade da variável seja protegida do resto do código.
+
+
+
+Desvantagem: 
+Os métodos getter e setter (também conhecidos como acessadores) são perigosos pelo mesmo motivo
+que os campos públicos são perigosos: eles fornecem acesso externo aos detalhes de implementação.
+E se você precisar alterar o tipo do campo acessado? Você também deve alterar o tipo de retorno do acessador.
+Dessa forma você teria trabalho dobrado para mudar o código.Você usa esse valor de retorno em vários lugares, 
+então você também deve alterar todo o código
